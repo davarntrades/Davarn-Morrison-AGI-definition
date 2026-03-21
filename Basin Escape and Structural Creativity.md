@@ -188,16 +188,37 @@ It also identifies specific limitations of current systems:
 
 The framework reframes learning as a geometric process rather than a purely statistical one. The question is not “how well does the system perform?” but “what can the system reach that it couldn’t reach before?”
 
+### 8.1 Scaling and Plateau
+
+Empirical scaling of neural systems produces rapid gains in performance, particularly in early regimes. However, within the reachability framework, this behaviour admits a structural interpretation. Scaling increases coverage of the existing basin of reachable states, improving performance without necessarily expanding the reachable set itself.
+
+Once the basin is saturated — that is, once `d/dt μ(ℛ(t)) ≈ 0` — further scaling yields diminishing returns. Performance improvements become incremental, and qualitatively new capabilities become rare.
+
+**Proposition (Scaling Plateau Condition).** Let system capability be evaluated via performance `P(t)`, and structural capacity via reachable set `ℛ(t)`. Then `d/dt P(t) > 0` can hold while `d/dt μ(ℛ(t)) → 0` — performance improves while structural expansion slows. But once `d/dt μ(ℛ(t)) ≈ 0`, we obtain `lim_{t→∞} d/dt P(t) → 0`. Performance saturates as a consequence of structural confinement.
+
+|Phase        |What Happens                        |`d/dt μ(ℛ)`|`d/dt P`            |
+|:-----------:|:----------------------------------:|:---------:|:------------------:|
+|Early scaling|Rapid gains — filling out the basin |`> 0`      |`>> 0`              |
+|Mid scaling  |Basin saturating — mostly refinement|`→ 0`      |`> 0` but decreasing|
+|Late scaling |Plateau — diminishing returns       |`≈ 0`      |`→ 0`               |
+|Breakthrough |Basin escape — new structure        |`>> 0`     |Discontinuous jump  |
+
+This suggests that observed plateaus in large-scale systems are not merely engineering limits, but geometric ones: the system remains confined to a fixed reachable structure. Overcoming such plateaus requires basin escape — not further optimisation within the existing basin.
+
+*Scaling improves performance until the reachable set saturates. Beyond that point, additional compute refines trajectories but does not expand possibility. Plateau is not a failure of scale — it is a consequence of structural confinement.*
+
 -----
 
 ## 9. Conclusion
 
 We presented a reachability-based account of learning dynamics in neural systems. By defining intelligence as expansion of the reachable set and introducing the Basin Escape Condition, we distinguish between optimisation within a fixed structure and genuine structural growth.
 
-|Regime    |Definition                                               |
-|:--------:|:-------------------------------------------------------:|
-|Expertise |Optimisation within a basin — `ℛ(t) ⊆ B`, `d/dt μ(ℛ) ≈ 0`|
-|Creativity|Expansion beyond the basin — `ℛ(t) ⊄ B`, `H_k` changed   |
+|Regime      |Definition                                                                  |
+|:----------:|:--------------------------------------------------------------------------:|
+|Expertise   |Optimisation within a basin — `ℛ(t) ⊆ B`, `d/dt μ(ℛ) ≈ 0`                   |
+|Plateau     |Basin saturated — `d/dt μ(ℛ) ≈ 0`, `d/dt P → 0`                             |
+|Creativity  |Expansion beyond the basin — `ℛ(t) ⊄ B`, `H_k` changed                      |
+|Breakthrough|Basin escape after plateau — `d/dt μ(ℛ) >> 0`, discontinuous capability gain|
 
 Learning is not only about improving trajectories. It is about changing what trajectories are possible.
 
