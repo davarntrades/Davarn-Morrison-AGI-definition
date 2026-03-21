@@ -105,11 +105,36 @@ Policies define mappings `π: X → 𝒰`. However, multiple policies can induce
 
 Policies describe control, not the space of attainable states. Two different policies acting on the same system may produce the same reachable set through different trajectories.
 
+### 4.4 Information Without Control: Structural Invariance Across Domains
+
+Information-theoretic frameworks implicitly assume that information plays a central role in guiding system behaviour. However, the presence of information does not, in general, imply any change in system dynamics or reachable structure.
+
+We observe a consistent pattern across domains: systems may possess accurate and relevant information about desirable or undesirable outcomes, yet exhibit no corresponding change in their trajectories or reachable states.
+
+|Domain          |Information Available      |Observed Behaviour   |Structural Effect                    |
+|:--------------:|:-------------------------:|:-------------------:|:-----------------------------------:|
+|Health (smoking)|Smoking causes harm        |Continued use        |`ℛ(t) ∩ Ω ≠ ∅` persists              |
+|Fitness         |Exercise improves health   |Inaction             |Beneficial states remain outside ℛ(t)|
+|Nutrition       |Diet affects wellbeing     |No behavioural change|ℛ(t) unchanged                       |
+|Productivity    |Tasks known to be important|Procrastination      |No trajectory update                 |
+
+In each case, the system possesses correct information, yet the reachable set remains unchanged. Formally:
+
+|Condition                    |Consequence                                      |
+|:---------------------------:|:-----------------------------------------------:|
+|`I ≠ 0` (information present)|Does not imply `Δℛ(t) ≠ 0` (reachable set change)|
+
+This demonstrates that information alone is insufficient to constrain, expand, or restructure the system’s reachable set. Information does not guarantee control over `ℛ(t)`.
+
+**Implication.** Any framework that equates intelligence with information processing is incomplete at the structural level, as it cannot guarantee or explain changes in the space of possible trajectories. Information describes aspects of the system. It does not determine what the system can become.
+
+The failure of information to induce structural change is not an exception but a common property of real-world systems, indicating that information operates at a descriptive rather than dynamical level.
+
 -----
 
 ## 5. Reachability as a Minimal Complete Object
 
-**Proposition (Minimal Completeness of Reachability).** Let a dynamical system be defined over state space `X`. The reachable set `ℛ(t)` is a minimal complete object in the sense that:
+**Proposition (Structural Completeness of Reachability).** Let a dynamical system be defined over state space `X`. The reachable set `ℛ(t)` is structurally complete under the stated assumptions in the sense that:
 
 This claim holds for deterministic or controlled dynamical systems where system evolution is fully characterised by state transitions over X.
 
@@ -132,16 +157,14 @@ Reachability subsumes alternative frameworks, but is not recoverable from them. 
 
 ## 6. Implications for Intelligence
 
-Under this framework, all core properties are defined over the same object:
+Under this framework, all core properties are defined over the same object. The measure `μ` denotes a measure over state space (e.g., volume, entropy, or trajectory count), depending on system instantiation.
 
-|Property    |Definition                             |Effect on ℛ   |
-|:----------:|:-------------------------------------:|:------------:|
-|Intelligence|`I(t) = d/dt μ(ℛ(t))` [Morrison, 2026b]|Expansion of ℛ|
-
-where `μ` denotes a measure over state space (e.g., volume, entropy, or trajectory count), depending on system instantiation.
-| Safety | `ℛ(t) ∩ Ω = ∅` [Morrison, 2026c] | Constraint on ℛ |
-| Creativity | Topological expansion of ℛ — basin escape | Structural growth of ℛ |
-| Truth | `∃k : H_k(ℛ(t₁)) ≇ H_k(ℛ(t₂))` [Morrison, 2026d] | Topological deformation of ℛ |
+|Property    |Definition                                      |Effect on ℛ                 |
+|:----------:|:----------------------------------------------:|:--------------------------:|
+|Intelligence|`I(t) = d/dt μ(ℛ(t))` [Morrison, 2026b]         |Expansion of ℛ              |
+|Safety      |`ℛ(t) ∩ Ω = ∅` [Morrison, 2026c]                |Constraint on ℛ             |
+|Creativity  |Topological expansion of ℛ — basin escape       |Structural growth of ℛ      |
+|Truth       |`∃k : H_k(ℛ(t₁)) ≇ H_k(ℛ(t₂))` [Morrison, 2026d]|Topological deformation of ℛ|
 
 Intelligence, safety, creativity, and truth are not separate phenomena requiring separate frameworks. They are properties of a single geometric object viewed through different operators.
 
